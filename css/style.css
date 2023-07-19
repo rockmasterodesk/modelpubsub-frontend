@@ -26,12 +26,14 @@
 
     /* Sizes */
     --sidebar-width: 88px;
+    --sidebar-height-mobile: 60px;
     --media-library-container-width: 220px;
     --results-section-width: 300px;
     --media-height: 80px;
     --media-width: 200px;
     --media-width-mobile: 130px;
     --color-switch-height: 55px;
+    --color-switch-width-mobile: 55px;
     --padding-10 : 10px;
 
     /* ====== Transition ====== */
@@ -121,8 +123,8 @@ body.dark a {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
-    width: var(--sidebar-width);
+    height: var(--sidebar-height-mobile);
+    width: 100%;
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
@@ -148,6 +150,9 @@ body.dark a {
 }
 
 /* ===== Reusable code - Here ===== */
+.sidebar {
+    display: flex;
+}
 .sidebar li{
     height: 50px;
     list-style: none;
@@ -273,9 +278,10 @@ body.dark .sidebar li.active a .text
     color: var(--text-color);
 }
 .sidebar .menu-bar{
-    height: calc(100% - var(--color-switch-height));
+    width: calc(100% - var(--color-switch-width-mobile));
+    height: initial;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     overflow-y: scroll;
 }
@@ -349,14 +355,10 @@ body.dark .switch::before{
 
 /* Main Content of the page */
 .body-contents{
-    position: absolute;
-    top: 0;
-    left: var(--sidebar-width);
-    height: 100vh;
-    width: calc(100% - var(--sidebar-width));
     background-color: var(--main-background-color);
     transition: var(--tran-05);
     flex-direction: column;
+    margin-top: var(--sidebar-height-mobile);
 }
 
 .body-contents .text{
@@ -513,34 +515,26 @@ body.dark .results-container {
 
 /* Screen bigger than mobile, i.e. 768px */
 @media (min-width: 768px) {
-/*    .sidebar {*/
-/*        width: var(--sidebar-width);*/
-/*    }*/
-
-/*    .body-contents {*/
-/*        left: var(--sidebar-width);*/
-/*        width: calc(100% - var(--sidebar-width));*/
-/*    }*/
-
-/*    .media-library-container {*/
-/*        width: var(--media-library-container-width);*/
-/*    }*/
-
-/*    .results-container {*/
-/*        width: var(--results-section-width);*/
-/*    }*/
-/*}*/
-
-/*!* Screen bigger than tablet, i.e. 992px *!*/
-/*@media (min-width: 992px) {*/
     .sidebar {
+        height: 100%;
         width: var(--sidebar-width);
+        flex-direction: column;
+    }
+
+    .sidebar .menu-bar {
+        height: calc(100% - var(--color-switch-height));
+        width: initial;
+        flex-direction: column;
     }
 
     .body-contents {
+        position: absolute;
+        top: 0;
         left: var(--sidebar-width);
+        height: 100vh;
         width: calc(100% - var(--sidebar-width));
         flex-direction: row;
+        margin-top: 0;
     }
 
     .media-library-container {
