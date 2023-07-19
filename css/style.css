@@ -29,6 +29,8 @@
     --media-library-container-width: 220px;
     --results-section-width: 300px;
     --media-height: 80px;
+    --media-width: 200px;
+    --media-width-mobile: 130px;
     --color-switch-height: 55px;
     --padding-10 : 10px;
 
@@ -354,6 +356,7 @@ body.dark .switch::before{
     width: calc(100% - var(--sidebar-width));
     background-color: var(--main-background-color);
     transition: var(--tran-05);
+    flex-direction: column;
 }
 
 .body-contents .text{
@@ -371,12 +374,13 @@ body.dark .body-contents .text{
 
 /* Media Library Container */
 .media-library-container {
-    width: var(--media-library-container-width);
     padding: var(--padding-10);
     background: var(--media-container-background-color);
-    height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    height: calc(var(--media-height) + (var(--padding-10) * 2));
+    width: 100%;
+    overflow-x: auto;
 }
 
 body.dark .media-library-container {
@@ -385,16 +389,22 @@ body.dark .media-library-container {
 
 .media-library-container .media-library-inner {
     flex: 1;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
 }
 
 .media-library-container .small-description {
     font-size: 12px;
+    display: none;
+}
+
+.media-library-container .media-library {
+    display: flex;
 }
 
 .media-library-container .media-library .single-media {
-    width: 100%;
+    width: var(--media-width-mobile);
     height: var(--media-height);
+    flex-shrink: 0;
     overflow: hidden;
     border: 3px solid transparent;
     border-radius: var(--border-radius-6);
@@ -417,14 +427,24 @@ body.dark .media-library-container {
     object-fit: cover;
 }
 
+.media-upload-controls-container {
+    width: var(--media-width);
+    height: var(--media-height);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+}
+
+.media-upload-controls-container button {
+    font-size: 0.7rem;
+}
+
 
 
 
 /* Image Preview Container */
 .image-preview-container {
     width: 100%;
-    height: 100%;
-    flex-grow: 1;
+    height: 300px;
 }
 
 .image-preview-container .image-preview-inner {
@@ -448,10 +468,9 @@ body.dark .media-library-container {
 
 /* Results Section Width */
 .results-container {
-    width: var(--results-section-width);
     padding: var(--padding-10);
     background: var(--media-container-background-color);
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -482,4 +501,86 @@ body.dark .results-container {
 
 .results-container .single-result .score {
     width: 30px;
+}
+
+
+
+
+
+
+
+
+
+/* Screen bigger than mobile, i.e. 768px */
+@media (min-width: 768px) {
+/*    .sidebar {*/
+/*        width: var(--sidebar-width);*/
+/*    }*/
+
+/*    .body-contents {*/
+/*        left: var(--sidebar-width);*/
+/*        width: calc(100% - var(--sidebar-width));*/
+/*    }*/
+
+/*    .media-library-container {*/
+/*        width: var(--media-library-container-width);*/
+/*    }*/
+
+/*    .results-container {*/
+/*        width: var(--results-section-width);*/
+/*    }*/
+/*}*/
+
+/*!* Screen bigger than tablet, i.e. 992px *!*/
+/*@media (min-width: 992px) {*/
+    .sidebar {
+        width: var(--sidebar-width);
+    }
+
+    .body-contents {
+        left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+        flex-direction: row;
+    }
+
+    .media-library-container {
+        height: 100vh;
+        width: var(--media-library-container-width);
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .media-library-container .media-library-inner {
+        overflow-y: auto;
+        height: calc(100vh - var(--media-height));
+    }
+
+    .media-library-container .media-library {
+        flex-direction: column;
+    }
+
+    .media-library-container .media-library .single-media {
+        width: var(--media-width);
+        height: var(--media-height);
+        margin-bottom: 10px;
+    }
+
+    .media-upload-controls-container {
+        height: var(--media-height);
+    }
+
+    .media-library-container .small-description {
+        font-size: 12px;
+        display: block;
+    }
+
+    .image-preview-container {
+        height: 100%;
+        flex-grow: 1;
+    }
+
+    .results-container {
+        width: var(--results-section-width);
+        height: 100%;
+    }
 }
