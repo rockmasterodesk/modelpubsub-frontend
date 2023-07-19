@@ -53,6 +53,19 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 
 
+// START: Open menu selection on mobile menu
+$('.active-menu-display').on('click', function () {
+    $('.menu-bar .menu').toggleClass('mobile-open');
+});
+
+// Clicking outside ".menu-bar .menu" except ".active-menu-display" will close the "mobile-open" class
+$(document).on('click', function (e) {
+    if (!$(e.target).closest('.menu-bar .menu').length && !$(e.target).closest('.active-menu-display').length) {
+        $('.menu-bar .menu').removeClass('mobile-open');
+    }
+});
+
+// END: Open menu selection on mobile menu
 
 
 

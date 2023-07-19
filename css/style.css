@@ -242,9 +242,7 @@ body.dark .sidebar header .toggle{
 .sidebar.close .toggle{
     transform: translateY(-50%) rotate(0deg);
 }
-.sidebar .menu{
-    margin-top: 40px;
-}
+
 .sidebar ul.menu-links {
     padding-left: 0;
 }
@@ -283,10 +281,38 @@ body.dark .sidebar li.active a .text
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
+.sidebar .menu-bar .menu {
+    display: none;
+    background: var(--sidebar-color);
+}
+.sidebar .menu-bar .menu.mobile-open {
+    position:absolute;
+    display: initial;
+    top: -5px;
+    z-index:2;
+}
+
 .menu-bar::-webkit-scrollbar{
     display: none;
+}
+
+/* Active Menu Display */
+.active-menu-display {
+    height: 100%;
+}
+
+.active-menu-display .active-menu {
+    height: 100%;
+}
+
+.active-menu-display .active-menu a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 /* Color Scheme Chooser */
@@ -294,25 +320,28 @@ body.dark .sidebar li.active a .text
     border-radius: var(--border-radius-3);
     background-color: var(--primary-color-light);
     transition: var(--tran-05);
+    display: flex;
 }
 .menu-bar #ColorSchemeMode .sun-moon{
-    height: var(--color-switch-height);
-    width: 60px;
+
 }
 #ColorSchemeMode .sun-moon{
-    position: relative;
+
 }
 #ColorSchemeMode .sun-moon i{
-    position: absolute;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    margin-left: 5px;
 }
 #ColorSchemeMode .sun-moon i.moon{
-    opacity: 0;
+    display:none;
 }
 body.dark #ColorSchemeMode .sun-moon i.moon{
-    opacity: 1;
+    display:flex;
 }
 body.dark #ColorSchemeMode .sun-moon i.sun{
-    opacity: 0;
+    display:none;
 }
 .menu-bar .bottom-content .toggle-switch{
     height: 100%;
@@ -323,6 +352,7 @@ body.dark #ColorSchemeMode .sun-moon i.sun{
     border-radius: 6px;
     cursor: pointer;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 .toggle-switch .switch{
     position: relative;
@@ -331,6 +361,7 @@ body.dark #ColorSchemeMode .sun-moon i.sun{
     border-radius: 25px;
     background-color: var(--toggle-color);
     transition: var(--tran-05);
+    z-index:1;
 }
 .switch::before{
     content: '';
@@ -515,16 +546,45 @@ body.dark .results-container {
 
 /* Screen bigger than mobile, i.e. 768px */
 @media (min-width: 768px) {
+    .mobile-only {
+        display: none;
+    }
+
     .sidebar {
         height: 100%;
         width: var(--sidebar-width);
         flex-direction: column;
     }
 
+    .sidebar .active-menu-display {
+        display: none;
+    }
+
     .sidebar .menu-bar {
         height: calc(100% - var(--color-switch-height));
         width: initial;
         flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .sidebar .menu-bar .menu{
+        margin-top: 40px;
+        display: initial;
+    }
+
+    .sidebar .menu-bar .menu.mobile-open {
+        position:initial;
+        display: initial;
+    }
+
+    .sidebar .menu-bar #ColorSchemeMode{
+        flex-direction: column;
+    }
+
+    #ColorSchemeMode .sun-moon i {
+        margin-left: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .body-contents {
