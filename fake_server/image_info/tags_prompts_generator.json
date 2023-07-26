@@ -1,0 +1,11 @@
+{
+  "success" : 1,
+  "data" : {
+    "prompt" : "Create an image with a green background with a flower on the front.",
+    "tags" : [
+      "flower",
+      "green",
+      "background"
+    ]
+  }
+}

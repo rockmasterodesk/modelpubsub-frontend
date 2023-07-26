@@ -1,0 +1,37 @@
+{
+  "success" : 1,
+  "data" : {
+    "tags" : [
+      {
+          "color": "rgb(241, 196, 15)",
+          "name": "stable_diffusion",
+          "score" : 1
+      },
+      {
+          "color": "rgb(231, 76, 60)",
+          "name": "ai_generated",
+          "score" : 1
+      },
+      {
+          "color": "rgb(46, 204, 113)",
+          "name": "not_ai_generated",
+          "score" : 0.3
+      },
+      {
+          "color": "rgb(52, 152, 219)",
+          "name": "none",
+          "score" : 0.2
+      },
+      {
+          "color": "rgb(155, 89, 182)",
+          "name": "midjourney",
+          "score" : 0.1
+      },
+      {
+          "color": "rgb(52, 73, 94)",
+          "name": "bingimagecreator",
+          "score" : 0.05
+      }
+    ]
+  }
+}

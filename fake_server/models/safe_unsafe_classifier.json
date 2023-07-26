@@ -1,0 +1,20 @@
+{
+  "success" : 1,
+  "data" : {
+    "description" : "Moderate images for inappropriate content, such as nudity, violence, drugs and hateful symbols. Images must be under 20MB.",
+    "images" : [
+        {
+            "id" : 1,
+            "url" : "/media/nsfw_3.jpg"
+        },
+        {
+            "id" : 2,
+            "url" : "/media/nsfw_4.jpg"
+        },
+        {
+            "id" : 3,
+            "url" : "/media/nsfw_5.jpg"
+        }
+    ]
+  }
+}

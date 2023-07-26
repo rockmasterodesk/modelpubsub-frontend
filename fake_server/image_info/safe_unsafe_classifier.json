@@ -1,0 +1,57 @@
+{
+  "success" : 1,
+  "data" : {
+    "tags" : [
+      {
+        "color": "rgb(241, 196, 15)",
+        "name" : "natural",
+        "score" : 1.000
+      },
+        {
+            "color" : "rgb(231, 76, 60)",
+            "name" : "yes_male_shirtless",
+            "score" : 0.999
+        },
+        {
+            "color": "rgb(46, 204, 113)",
+            "name" : "general_suggestive",
+            "score" : 0.999
+        },
+        {
+            "color": "rgb(155, 89, 182)",
+            "name" : "yes_middle_finger",
+            "score" : 0.999
+        },
+        {
+            "color" : "rgb(231, 76, 60)",
+            "name" : "yes_male_underwear",
+            "score" : 0.999
+        },
+        {
+            "color": "rgb(52, 152, 219)",
+            "name" : "text",
+            "score" : 0.999
+        },
+        {
+            "color" : "rgb(231, 76, 60)",
+            "name" : "yes_smoking",
+            "score" : 0.999
+        },
+        {
+            "color" : "rgb(231, 76, 60)",
+            "name" : "yes_female_swimmer",
+            "score" : 0.999
+        },
+        {
+            "color" : "rgb(231, 76, 60)",
+            "name" : "yes_overlay_text",
+            "score" : 0.999
+        },
+        {
+            "color" : "rgb(231, 76, 60)",
+            "name" : "a_little_bloody",
+            "score" : 0.998
+        }
+    ]
+  }
+}

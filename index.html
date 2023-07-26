@@ -28,38 +28,38 @@
     </header>
 
     <div class="menu-bar">
-        <div class="active-menu-display">
+        <div class="active-menu-display" id="ActiveMenuDisplay">
             <div class="active-menu">
                 <a href="#">
                     <i class='bx bx-check-shield icon'></i>
-                    <div>Unsafe/Safe Image Classifier</div>
+                    <div class="classifier-name-text">Unsafe/Safe Image Classifier</div>
                 </a>
             </div>
         </div>
         <div class="menu">
-            <ul class="menu-links">
-                <li class="nav-link active">
+            <ul class="menu-links" id="LeftMenuButtons">
+                <li class="nav-link active" data-model="safe_unsafe_classifier">
                     <a href="#" data-bs-custom-class="custom-tooltip" data-bs-title="Unsafe/Safe Image Classifier" data-bs-toggle="tooltip">
                         <i class='bx bx-check-shield icon'></i>
-                        <div class="mobile-only mr-2">Unsafe/Safe Image Classifier</div>
+                        <div class="mobile-only classifier-name-text mr-2">Unsafe/Safe Image Classifier</div>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="nav-link" data-model="ai_generated_detector">
                     <a href="#" data-bs-custom-class="custom-tooltip" data-bs-title="AI Generated or Not Image Classifier" data-bs-toggle="tooltip">
                         <i class='bx bx-bot icon'></i>
-                        <div class="mobile-only mr-2">AI Generated or Not Image Classifier</div>
+                        <div class="mobile-only classifier-name-text mr-2">AI Generated or Not Image Classifier</div>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="nav-link" data-model="tags_prompts_generator">
                     <a href="#" data-bs-custom-class="custom-tooltip" data-bs-title="Image Tags or Stable Diffusion Prompt Generator" data-bs-toggle="tooltip">
                         <i class='bx bx-tag-alt icon'></i>
-                        <div class="mobile-only mr-2">Image Tags or Stable Diffusion Prompt Generator</div>
+                        <div class="mobile-only classifier-name-text mr-2">Image Tags or Stable Diffusion Prompt Generator</div>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="nav-link" data-model="image_captioning">
                     <a href="#" data-bs-custom-class="custom-tooltip" data-bs-title="Image Captioning" data-bs-toggle="tooltip">
                         <i class='bx bx-captions icon'></i>
-                        <div class="mobile-only mr-2">Image Captioning</div>
+                        <div class="mobile-only classifier-name-text mr-2">Image Captioning</div>
                     </a>
                 </li>
             </ul>
@@ -83,36 +83,78 @@
 <section class="body-contents d-flex">
 
     <div class="media-library-container flex-shrink-0">
+        <button class="btn btn-default mb-2 d-none" id="BackToOurMediaLibrary">
+            <i class='bx bx-chevron-left'></i>
+            Back to Our Models
+        </button>
+
         <div class="media-library-inner predefined-media-library">
             <div class="small-description">
-                <p>Moderate images for inappropriate content, such as nudity, violence, drugs and hateful symbols. Images must be under 20MB.</p>
+                <p id="ModelDescriptionText">Moderate images for inappropriate content, such as nudity, violence, drugs and hateful symbols. Images must be under 20MB.</p>
             </div>
-            <div class="media-library">
+            <div class="media-library" id="MediaLibraryImages">
                 <div class="single-media active">
-                    <img src="./media/nsfw_3.jpg" alt="NSFW 3">
+                    <img src="./media/nsfw_3.jpg" data-image-id="1" alt="NSFW 3">
                 </div>
                 <div class="single-media">
-                    <img src="./media/nsfw_4.jpg" alt="NSFW 4">
+                    <img src="./media/nsfw_4.jpg" data-image-id="2" alt="NSFW 4">
                 </div>
                 <div class="single-media">
-                    <img src="./media/nsfw_5.jpg" alt="NSFW 5">
+                    <img src="./media/nsfw_5.jpg" data-image-id="3" alt="NSFW 5">
                 </div>
             </div>
         </div>
         <div class="media-library-inner user-uploaded-media-library d-none">
-
+            <div class="media-library" id="UserUploadedMediaLibraryImages">
+                <div class="single-media active">
+                    <img src="./media/nsfw_3.jpg" data-image-id="1" alt="NSFW 3">
+                </div>
+                <div class="single-media">
+                    <img src="./media/nsfw_4.jpg" data-image-id="2" alt="NSFW 4">
+                </div>
+                <div class="single-media">
+                    <img src="./media/nsfw_5.jpg" data-image-id="3" alt="NSFW 5">
+                </div>
+            </div>
         </div>
 
 
 
+        <div class="media-uploader-container d-none">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" id="UploadImageCloser">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <div class="upload-image">
+                <span>Upload</span>
+                <label for="MediaUploader" aria-dropeffect="execute" class="media-uploader-label">
+                    <i class='bx bx-cloud-upload'></i>
+                    <span style="margin-left: 2px;">Upload Image</span>
+                </label>
+                <input type="file" id="MediaUploader" class="d-none" accept="image/*">
+            </div>
+
+            <div class="url-image my-2">
+                <label for="MediaURL">URL</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="MediaURL" placeholder="https://example.com/image.jpg">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="MediaURLSubmit">
+                            <i class='bx bx-chevron-right'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="media-upload-controls-container d-flex align-items-center flex-column justify-content-center">
             <div class="upload-button-container">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" id="UploadImageOpener">
                     Upload Image
                 </button>
             </div>
             <div class="view-uploads-link mt-1">
-                <a href="#">View Uploads</a>
+                <a href="#" id="ViewUploads">View Uploads</a>
             </div>
             <small class="mt-1">Visit uploading <a href="#">Terms and Conditions</a></small>
         </div>
@@ -128,207 +170,7 @@
         <div class="results-container-inner">
             <h4>Results</h4>
 
-            <div class="results">
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(231, 76, 60);"></div>
-                    <div class="name">natural</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(41, 128, 185);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(53,90,26);"></div>
-                    <div class="name">general_suggestive</div>
-                    <div class="score">1.000</div>
-                </div>
-                <div class="single-result">
-                    <div class="color" style="background-color: rgb(185,41,63);"></div>
-                    <div class="name">yes_middle_finger</div>
-                    <div class="score">1.000</div>
-                </div>
+            <div id="TagsContainer" class="results">
                 <div class="single-result">
                     <div class="color" style="background-color: rgb(231, 76, 60);"></div>
                     <div class="name">natural</div>
@@ -350,6 +192,29 @@
                     <div class="score">1.000</div>
                 </div>
             </div>
+
+            <div id="ImageCaptionContainer" style="display: none;">
+                <div id="ImageCaption">
+                    <label for="caption_textarea" id="caption_label">Caption</label>
+                    <textarea name="caption" id="caption_textarea" cols="0" rows="10" placeholder=""></textarea>
+                </div>
+            </div>
+
+            <div id="ImageTags" style="display: none;">
+                <label class="mb-2">Tags</label>
+                <div class="image-tags-container">
+                    <div class="single-image-tag">
+                        natural
+                    </div>
+                    <div class="single-image-tag">
+                        green-background
+                    </div>
+                    <div class="single-image-tag">
+                        personal portrait
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

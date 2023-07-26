@@ -1,0 +1,20 @@
+{
+  "success" : 1,
+  "data" : {
+    "description" : "Generate tags and StableDiffusion prompts from images. Images must be under 20MB.",
+    "images" : [
+        {
+            "id" : 1,
+            "url" : "/media/tags-1.jpeg"
+        },
+        {
+            "id" : 2,
+            "url" : "/media/tags-2.jpeg"
+        },
+        {
+            "id" : 3,
+            "url" : "/media/tags-3.jpeg"
+        }
+    ]
+  }
+}

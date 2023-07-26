@@ -1,0 +1,20 @@
+{
+  "success" : 1,
+  "data" : {
+    "description" : "Detect AI generated images from popular tools like DALL-E, Midjourney, Stable Diffusion, and others. Images must be under 20MB.",
+    "images" : [
+        {
+            "id" : 1,
+            "url" : "/media/ai-generated-1.png"
+        },
+        {
+            "id" : 2,
+            "url" : "/media/ai-generated-2.png"
+        },
+        {
+            "id" : 3,
+            "url" : "/media/ai-generated-3.jpeg"
+        }
+    ]
+  }
+}
