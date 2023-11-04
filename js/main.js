@@ -113,7 +113,18 @@ function fetchAndUpdateMediaLibrary(model) {
             // Update the images in the media library
             var imagesHtml = '';
             $.each(data.data.images, function (index, image) {
-                imagesHtml += '<div class="single-media"><img src="' + image.url + '" data-image-id="'+image.id+'" alt=""></div>';
+                // If image url is from a folder "media", then add a smaller version of the image from media/min
+                let small_image = image.url;
+                let large_image = image.url;
+
+                if (image.url.includes('media/')) {
+                    small_image = image.url.replace('media/', 'media/min/');
+                }
+
+                // onerror, replace the image with large image
+                let on_error = "this.onerror=null;this.src='" + large_image + "';";
+
+                imagesHtml += '<div class="single-media"><img src="' + small_image + '" data-original-src="'+large_image+'" data-image-id="'+image.id+'" onerror="'+on_error+'" alt=""></div>';
             });
 
             $('.predefined-media-library #MediaLibraryImages').html(imagesHtml);
@@ -269,6 +280,10 @@ $(document).on('click', '.single-media', function () {
     // 1. Activate the clicked image and update image preview
     let src = $(this).find('img').attr('src');
     $('.image-preview-inner img').attr('src', src);
+
+    // Update the original src of the image
+    let original_src = $(this).find('img').attr('data-original-src');
+    $('.image-preview-inner img').attr('src', original_src);
 
     // 2. Fetch and update detected tags according to the image clicked
     let id = $(this).find('img').attr('data-image-id');
